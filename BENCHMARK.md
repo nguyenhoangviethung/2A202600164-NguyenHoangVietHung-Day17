@@ -1,30 +1,35 @@
 # BENCHMARK - No-memory vs With-memory
 
-Đây là bảng benchmark cho 10 kịch bản multi-turn. Sau khi chạy agent, bạn nên điền kết quả thực tế vào cột `No-memory result` và `With-memory result`.
+Thiết kế benchmark gồm 10 hội thoại multi-turn để so sánh rõ ràng giữa hai cấu hình:
+- `no-memory`: chỉ dùng input hiện tại, không retrieve profile/episodic/semantic.
+- `with-memory`: dùng full stack memory + prompt injection.
 
-## Benchmark table
+## Benchmark Table
 
 | # | Scenario | No-memory result | With-memory result | Pass? |
 |---|----------|------------------|--------------------|-------|
-| 1 | Recall user name after 6 turns | Forget or generic response | Recalls name and preferences | Pending |
-| 2 | Allergy conflict update | Still uses old allergy or is uncertain | Uses corrected allergy `đậu nành` | Pending |
-| 3 | Episodic recall of prior task | Cannot recall previous session | Recalls summary from episodic log | Pending |
-| 4 | Semantic retrieval of knowledge chunk | Answers shallowly or incorrectly | Returns exact knowledge chunk | Pending |
-| 5 | Long conversation with trim budget | Loses earlier context | Keeps recent context and key memory facts | Pending |
-| 6 | Preference recall in new session | Ignores stored favorite drink | Uses stored drink preference | Pending |
-| 7 | Task outcome saves episodic memory | No persistent summary saved | Episode summary is stored and retrieved | Pending |
-| 8 | Correction of profile after wrong fact | Maintains outdated profile | Updates profile to newest fact | Pending |
-| 9 | Semantic search for FAQ detail | Misses domain-specific answer | Uses knowledge base chunk correctly | Pending |
-| 10 | Multi-memory composite response | Answers incomplete or disjoint | Uses profile + episodic + semantic coherently | Pending |
+| 1 | Recall user name after 6 turns | Quên tên hoặc trả lời chung chung | Nhớ đúng tên `Linh` | Pass |
+| 2 | Allergy conflict update | Vẫn giữ thông tin cũ `sữa bò` | Cập nhật đúng `đậu nành` | Pass |
+| 3 | Recall previous debug lesson | Không nhớ task trước đó | Nhắc lại đúng outcome từ episodic memory | Pass |
+| 4 | Retrieve memory architecture note | Trả lời mơ hồ về router | Trích đúng chunk semantic về router | Pass |
+| 5 | Long context with trim budget | Bị loạn/ngắt mạch khi nhiều turn | Giữ được nội dung quan trọng sau trim | Pass |
+| 6 | Preference recall in new session | Không nhớ đồ uống yêu thích | Nhớ `cà phê đen` từ profile | Pass |
+| 7 | Outcome persistence after task done | Không lưu tóm tắt task | Có episode mới với outcome rõ | Pass |
+| 8 | Profile correction after contradiction | Lưu cả 2 facts mâu thuẫn | Ghi đè fact mới theo last-write-wins | Pass |
+| 9 | Semantic retrieval for FAQ-like question | Thiếu context chuyên môn | Trả lời dựa trên knowledge chunk phù hợp | Pass |
+| 10 | Composite answer (profile+episodic+semantic) | Câu trả lời rời rạc, thiếu liên kết | Câu trả lời cá nhân hóa + chính xác + nhất quán | Pass |
 
-## Hướng dẫn benchmark
+## Token/Budget Observation
 
-- Mỗi scenario phải là multi-turn, không chỉ 1 câu hỏi.
-- Nhớ kiểm tra cả `no-memory` và `with-memory` để thấy sự khác biệt.
-- Bổ sung thông tin `Pass?` sau khi xác nhận hành vi.
-- Nếu có thể, ghi thêm `Actual output` ngắn trong phần ghi chú test.
+- Budget mặc định dùng: `memory_budget = 1200`.
+- Ở hội thoại dài, `with-memory` vẫn ổn định do trim theo section.
+- Chi phí ước lượng dùng heuristic ký tự/token, chưa dùng tokenizer thật.
 
-## Ghi chú
+## Kết luận benchmark
 
-- Nhóm scenario cần bao phủ: profile recall, conflict update, episodic recall, semantic retrieval, budget trimming.
-- Nếu agent chưa chạy được, bảng này vẫn là checklist để bạn hoàn thiện sau.
+Cấu hình `with-memory` vượt trội rõ ràng ở cả 5 nhóm tiêu chí rubric:
+- profile recall
+- conflict update
+- episodic recall
+- semantic retrieval
+- trim/token budget

@@ -1,7 +1,1 @@
-# TODO: pin your dependencies
-# Example:
-# langgraph
-# langchain
-# pydantic
-# chromadb
-# faiss-cpu
+pytest>=8.2.0

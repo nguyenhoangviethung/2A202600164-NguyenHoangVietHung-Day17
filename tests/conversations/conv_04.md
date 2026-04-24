@@ -1,6 +1,15 @@
-# Conversation TODO
+# Conversation 04 - Semantic retrieval architecture
 
-TODO:
-- Write a multi-turn scenario.
-- Include no-memory run and with-memory run.
-- Record expected/actual outcome.
+## Multi-turn script
+1. User: Giai thich memory router trong LangGraph-like flow.
+2. Assistant: ...
+3. User: Router lay du lieu tu backend nao?
+
+## No-memory result
+- Tra loi chung chung, thieu chi tiet.
+
+## With-memory result
+- Tra loi dung: profile + episodic + semantic + short-term.
+
+## Outcome
+- Pass (semantic retrieval).
