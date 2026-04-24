@@ -1,0 +1,22 @@
+{
+  "user_123": {
+    "name": "Linh",
+    "preferred_language": "Tiếng Việt",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "favorite_drink": "cà phê đen",
+    "dietary_preference": "ăn chay",
+    "allergies": "đậu nành",
+    "occupation": "sinh viên AI",
+    "learning_goals": "xây dựng hệ thống agent với nhiều loại memory"
+  },
+  "user_456": {
+    "name": "Nam",
+    "preferred_language": "English",
+    "timezone": "Asia/Singapore",
+    "favorite_drink": "matcha latte",
+    "dietary_preference": "không ăn thịt lợn",
+    "allergies": "hải sản",
+    "occupation": "developer",
+    "learning_goals": "compare no-memory and with-memory agent behavior"
+  }
+}

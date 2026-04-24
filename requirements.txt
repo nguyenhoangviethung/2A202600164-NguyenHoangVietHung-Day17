@@ -1,0 +1,7 @@
+# TODO: pin your dependencies
+# Example:
+# langgraph
+# langchain
+# pydantic
+# chromadb
+# faiss-cpu

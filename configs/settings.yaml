@@ -1,0 +1,19 @@
+# Runtime configuration for Lab 17
+
+# Total token/character budget for assembled prompt sections.
+memory_budget: 1200
+
+# Short-term conversation window size (number of turns to keep).
+window_size: 8
+
+# Number of semantic chunks to retrieve for each query.
+semantic_top_k: 3
+
+# If true, use a real vector database backend; otherwise use file-based or keyword fallback.
+use_real_vector_db: false
+
+# Maximum profile facts to include in prompt.
+profile_max_facts: 10
+
+# Maximum episodic summaries to include in prompt.
+episodic_max_items: 5
